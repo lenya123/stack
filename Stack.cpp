@@ -42,10 +42,10 @@ Stack::Stack(const Stack& copyStack): _containerType(copyStack._containerType)
     switch (_containerType)
     {
         case StackContainer::Vector:
-            _pimpl = new StackVector(*static_cast<StackVector*>(copyStack._pimpl));
+            _pimpl = new StackVector(*dynamic_cast<StackVector*>(copyStack._pimpl));
             break;
         case StackContainer::List:
-            _pimpl = new StackList(*static_cast<StackList*>(copyStack._pimpl));
+            _pimpl = new StackList(*dynamic_cast<StackList*>(copyStack._pimpl));
             break;
         default:
         throw std::invalid_argument("dont have a container this type");
@@ -60,10 +60,10 @@ Stack& Stack::operator=(const Stack& copyStack)
         switch (_containerType)
         {
             case StackContainer::Vector:
-                _pimpl = new StackVector(*static_cast<StackVector*>(copyStack._pimpl));
+                _pimpl = new StackVector(*dynamic_cast<StackVector*>(copyStack._pimpl));
                 break;
             case StackContainer::List:
-                _pimpl = new StackList(*static_cast<StackList*>(copyStack._pimpl));
+                _pimpl = new StackList(*dynamic_cast<StackList*>(copyStack._pimpl));
                 break;
             default:
             throw std::invalid_argument("dont have a container this type");
